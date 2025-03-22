@@ -1,0 +1,11 @@
+[prometheus]
+172.16.7.50
+
+[node-exporter]
+172.16.7.51
+172.16.7.52
+172.16.7.53
+
+[all:vars]
+ansible_ssh_user=urlib
+ansible_ssh_private_key_file=~/.ssh/urlib
