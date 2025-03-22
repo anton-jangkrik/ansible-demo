@@ -3,7 +3,7 @@
 
 [node-exporter]
 172.16.7.51
-172.16.7.52 
+172.16.7.52
 
 [all:vars]
 ansible_user=urlib
