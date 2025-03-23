@@ -2,17 +2,17 @@
   become: true
   vars:
     packages:
-      download_url: https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz
-      package_name: node_exporter-1.5.0.linux-amd64.tar.gz
+      download_url: https://github.com/prometheus/node_exporter/releases/download/v1.9.0/node_exporter-1.9.0.darwin-amd64.tar.gz
+      package_name: node_exporter-1.9.0.darwin-amd64.tar.gz
     temp_dir: /tmp
 
   tasks:
-    - name: Download Node Exporter v1.5.0
+    - name: Download Node Exporter v1.9.0
       get_url:
         url: "{{ packages.download_url }}"
         dest: "{{ temp_dir }}"
 
-    - name: Extract Node Exporter v1.5.0
+    - name: Extract Node Exporter v1.9.0
       unarchive:
         src: "{{ temp_dir }}/{{ packages.package_name }}"
         dest: "{{ temp_dir }}"
@@ -33,7 +33,7 @@
 
     - name: Copy Node Exporter Binary Files
       copy:
-        src: "{{ temp_dir }}/node_exporter-1.5.0.linux-amd64/node_exporter"
+        src: "{{ temp_dir }}/node_exporter-1.9.0.linux-amd64/node_exporter"
         dest: /usr/local/bin
         owner: root
         mode: "0755"
@@ -62,5 +62,5 @@
         state: absent
         force: yes
       with_items:
-        - "{{ temp_dir }}/node_exporter-1.5.0.linux-amd64"
+        - "{{ temp_dir }}/node_exporter-1.9.0.linux-amd64"
         - "{{ temp_dir }}/{{ packages.package_name }}"
