@@ -2,8 +2,8 @@
   become: true
   vars:
     packages:
-      download_url: https://github.com/prometheus/prometheus/releases/download/v2.37.6/prometheus-2.37.6.linux-amd64.tar.gz
-      package_name: prometheus-2.37.6.linux-amd64.tar.gz
+      download_url: https://github.com/prometheus/prometheus/releases/download/v3.2.1/prometheus-3.2.1.darwin-amd64.tar.gz
+      package_name: prometheus-3.2.1.darwin-amd64.tar.gz
     temp_dir: /tmp
     config_dir: /etc/prometheus
     data_dir: /var/lib/prometheus
@@ -27,12 +27,12 @@
           172.16.7.52 demo-server-2
           172.16.7.53 demo-server-3
 
-    - name: Download Prometheus v2.37.6
+    - name: Download Prometheus v3.2.1
       get_url:
         url: "{{ packages.download_url }}"
         dest: "{{ temp_dir }}/{{ packages.package_name }}"
 
-    - name: Extract Prometheus v2.37.6
+    - name: Extract Prometheus v3.2.1
       unarchive:
         src: "{{ temp_dir }}/{{ packages.package_name }}"
         dest: "{{ temp_dir }}"
@@ -72,8 +72,8 @@
         group: root
         remote_src: yes
       with_items:
-        - "{{ temp_dir }}/prometheus-2.37.6.linux-amd64/prometheus"
-        - "{{ temp_dir }}/prometheus-2.37.6.linux-amd64/promtool"
+        - "{{ temp_dir }}/prometheus-3.2.1.darwin-amd64/prometheus"
+        - "{{ temp_dir }}/prometheus-3.2.1.darwin-amd64/promtool"
 
     - name: Copy Prometheus Files
       copy:
@@ -83,9 +83,9 @@
         group: root
         remote_src: yes
       with_items:
-        - "{{ temp_dir }}/prometheus-2.37.6.linux-amd64/consoles"
-        - "{{ temp_dir }}/prometheus-2.37.6.linux-amd64/console_libraries"
+        - "{{ temp_dir }}/prometheus-3.2.1.darwin-amd64/consoles"
 
+        - "{{ temp_dir }}/prometheus-3.2.1.darwin-amd64/console_libraries"
     - name: Copy Prometheus Config File
       copy:
         src: ../config/prometheus/prometheus.yml
@@ -113,5 +113,5 @@
         state: absent
         force: yes
       with_items:
-        - "{{ temp_dir }}/prometheus-2.37.6.linux-amd64"
+        - "{{ temp_dir }}/prometheus-3.2.1.darwin-amd64"
         - "{{ temp_dir }}/{{ packages.package_name }}"
