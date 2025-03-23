@@ -14,18 +14,18 @@
         path: /etc/cloud/templates/hosts.debian.tmpl
         block: |
           # The following lines are using for KES Server
-          10.28.30.11 demo-server-1
-          10.28.30.12 demo-server-2
-          10.28.30.13 demo-server-3
+          172.16.7.51 demo-server-1
+          172.16.7.52 demo-server-2
+          172.16.7.53 demo-server-3
 
     - name: Add entries /etc/hosts
       blockinfile:
         path: /etc/hosts
         block: |
           # The following lines are using for KES Server
-          10.28.30.11 demo-server-1
-          10.28.30.12 demo-server-2
-          10.28.30.13 demo-server-3
+          172.16.7.51 demo-server-1
+          172.16.7.52 demo-server-2
+          172.16.7.53 demo-server-3
 
     - name: Download Prometheus v2.37.6
       get_url:
